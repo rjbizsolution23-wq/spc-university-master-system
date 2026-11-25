@@ -1,0 +1,452 @@
+[
+  {
+    "id": 118,
+    "count": 0,
+    "description": "These Articles contain information on the creation of Business Credit.",
+    "link": "https://spcuniversity.com/category/business_credit/",
+    "name": "Business Credit",
+    "slug": "business_credit",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/118",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=118"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 124,
+    "count": 1,
+    "description": "",
+    "link": "https://spcuniversity.com/category/civics/",
+    "name": "Civics",
+    "slug": "civics",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/124",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=124"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 130,
+    "count": 1,
+    "description": "",
+    "link": "https://spcuniversity.com/category/debt-discharge/",
+    "name": "Debt Discharge",
+    "slug": "debt-discharge",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/130",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=130"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 119,
+    "count": 0,
+    "description": "The Articles are written from the standpoint of the occult world of commerce.",
+    "link": "https://spcuniversity.com/category/esoteric/",
+    "name": "Esoteric",
+    "slug": "esoteric",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/119",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=119"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 125,
+    "count": 1,
+    "description": "",
+    "link": "https://spcuniversity.com/category/health/",
+    "name": "Health",
+    "slug": "health",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/125",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=125"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 116,
+    "count": 0,
+    "description": "These are Articles dealing with Private Trust Administration",
+    "link": "https://spcuniversity.com/category/private_trust/",
+    "name": "Private Trust",
+    "slug": "private_trust",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/116",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=116"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 120,
+    "count": 0,
+    "description": "Articles from Gurus on different ways one can invest in Real Estate",
+    "link": "https://spcuniversity.com/category/real_estate_investment/",
+    "name": "Real Estate Investment",
+    "slug": "real_estate_investment",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/120",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=120"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 115,
+    "count": 5,
+    "description": "These are articles related to the secured party creditor process.",
+    "link": "https://spcuniversity.com/category/secured_party_creditor/",
+    "name": "Secured Party Creditor",
+    "slug": "secured_party_creditor",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/115",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=115"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 117,
+    "count": 10,
+    "description": "These articles discuss the various processes that are used to achieve \"correction\" in ones standing vis a vis the government.",
+    "link": "https://spcuniversity.com/category/status_correction/",
+    "name": "Status Correction",
+    "slug": "status_correction",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/117",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=117"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "count": 70,
+    "description": "",
+    "link": "https://spcuniversity.com/category/uncategorized/",
+    "name": "Uncategorized",
+    "slug": "uncategorized",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories/1",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/taxonomies/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://spcuniversity.com/wp-json/wp/v2/posts?categories=1"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

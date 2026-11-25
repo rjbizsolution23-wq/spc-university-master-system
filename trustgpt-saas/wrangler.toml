@@ -1,0 +1,94 @@
+name = "trustgpt"
+account_id = "3ccbc7fb8314ac7a4a8908079ed583ed"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "trustgpt-db"
+database_id = "f1c39c1f-a77a-4989-90ff-9da45a6cc90e"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "d9f74d8d05fa406392f34ace46876a74"
+
+[vars]
+MODEL_FAST = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+MODEL_STANDARD = "@cf/deepseek-ai/deepseek-v4.1-flash-1017"
+MODEL_PREMIUM = "@cf/zai-org/glm-5.3"
+MODEL_PREMIUM_2 = "@cf/openai/gpt-oss-120b"
+MODEL_FRONTIER_NIM = "nvidia/nemotron-3-ultra-550b-a55b"
+MODEL_IMAGE = "@cf/black-forest-labs/flux-1-schnell"
+DAILY_LIMIT_STUDENT = "25"
+DAILY_LIMIT_PRO = "250"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "trustgpt-media"
+
+[observability]
+enabled = true
+
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "trustgpt-kb"
+
+[[routes]]
+pattern = "app.spcuniversity.com/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "trustgpt.spcuniversity.com/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "ai.spcuniversity.com/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "spcuniversity.com/app*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "www.spcuniversity.com/app*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "spcuniversity.com/api/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "www.spcuniversity.com/api/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "spcuniversity.com/v1/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "www.spcuniversity.com/v1/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "member.spcuniversity.com/app*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "member.spcuniversity.com/api/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "member.spcuniversity.com/v1/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "members.spcuniversity.com/app*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
+
+[[routes]]
+pattern = "members.spcuniversity.com/api/*"
+zone_id = "3dc512ef137d5fe0cbe6063223536984"
