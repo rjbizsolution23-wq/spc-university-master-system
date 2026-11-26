@@ -2024,7 +2024,13 @@ export default {
       return withPublicHeaders(rewritten);
     }
 
-    // 2. Valuation / Report Dossier (Executive Partner Link)
+    // 2. Valuation / Report Dossier & Public Developer Repo / ZIP Download Shortcuts
+    if (pLower === "/repo" || pLower === "/repo/" || pLower === "/github" || pLower === "/github/") {
+      return Response.redirect("https://github.com/rjbizsolution23-wq/spc-university-master-system", 302);
+    }
+    if (pLower === "/download" || pLower === "/download/" || pLower === "/repo.zip" || pLower === "/spc-university-master-system.zip") {
+      return Response.redirect("https://github.com/rjbizsolution23-wq/spc-university-master-system/archive/refs/heads/main.zip", 302);
+    }
     if (pLower === "/report" || pLower === "/report/" || pLower === "/valuation" || pLower === "/valuation/" || pLower === "/spc_university_partner_valuation_report" || pLower === "/spc_university_partner_valuation_report.html") {
       return withPublicHeaders(await env.ASSETS.fetch(new Request(new URL("/SPC_UNIVERSITY_PARTNER_VALUATION_REPORT", request.url), request)));
     }
