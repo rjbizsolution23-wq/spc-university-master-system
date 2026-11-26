@@ -1471,7 +1471,7 @@ const BRAND_FOOTER_SHOWCASE_AND_CHATBOT_HTML = `
       document.querySelectorAll(".elementor-section, .post-inner-wrap, .entry-content-wrap, .elementor-widget-table-of-contents .elementor-widget-container, .wpbc_booking_appointment__stage, .wpbc_booking_ui_theme_scope, .wpbc_booking_appointment__choice, .elementor-price-table, .e-loop-item, .woocommerce-form").forEach(function(sec) {
         try {
           var bg = window.getComputedStyle(sec).backgroundColor || "";
-          var m = bg.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+          var m = bg.match(/rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)/);
           if (m) {
             var r = parseInt(m[1], 10), g = parseInt(m[2], 10), b = parseInt(m[3], 10);
             if (r > 175 && g > 175 && b > 175) {
@@ -1484,6 +1484,18 @@ const BRAND_FOOTER_SHOWCASE_AND_CHATBOT_HTML = `
       });
     }
     convertLightBoxesToImperialNavy();
+
+    // 4. Wire any Elementor button without a valid href (such as the Homepage "Load More" button or "#intro-video" button) so every single button on the website responds immediately when clicked!
+    document.querySelectorAll("a.elementor-button, .elementor-button-wrapper a").forEach(function(btn) {
+      var h = (btn.getAttribute("href") || "").trim();
+      var txt = (btn.textContent || "").trim().toLowerCase();
+      if (!h || h === "#" || txt.includes("load more")) {
+        btn.setAttribute("href", "/articles/");
+        btn.style.cursor = "pointer";
+      } else if (h === "#intro-video" && !document.getElementById("intro-video")) {
+        btn.setAttribute("href", "/please-read-the-rules-carefully/");
+      }
+    });
     try {
       var obs = new MutationObserver(function() {
         convertLightBoxesToImperialNavy();
@@ -1861,8 +1873,8 @@ const MEMBER_AREA_BUILT_IN_AI_SUITE_INJECTION = `
     var walker = document.createTreeWalker(rootEl, NodeFilter.SHOW_TEXT, null, false);
     var node;
     while ((node = walker.nextNode())) {
-      if (node.nodeValue && /HFRN\s*GLOBAL\s*MEDIA\s*GROUP(?:\s*INC\.?)?/i.test(node.nodeValue)) {
-        node.nodeValue = node.nodeValue.replace(/HFRN\s*GLOBAL\s*MEDIA\s*GROUP(?:\s*INC\.?)?/gi, "SPC UNIVERSITY — SCHOOL OF PRIVATE CIVICS");
+      if (node.nodeValue && /HFRN\\s*GLOBAL\\s*MEDIA\\s*GROUP(?:\\s*INC\\.?)?/i.test(node.nodeValue)) {
+        node.nodeValue = node.nodeValue.replace(/HFRN\\s*GLOBAL\\s*MEDIA\\s*GROUP(?:\\s*INC\\.?)?/gi, "SPC UNIVERSITY — SCHOOL OF PRIVATE CIVICS");
       }
     }
     var targetLogo = "https://spcuniversity.com/brand-kit/images/logo-compact.png";
