@@ -1679,6 +1679,9 @@ async function api(path, body, method) {
   return j;
 }
 
+function safeAttrJs(val) {
+  return JSON.stringify(val).replace(/&/g, "&amp;").replace(/'/g, "&#39;").replace(/"/g, "&quot;");
+}
 function esc(s) {
   return String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -2365,8 +2368,8 @@ function renderOverview() {
             <div style="font-size:13px;color:var(--rj-muted);line-height:1.55">\${esc(p.q)}</div>
           </div>
           <div style="display:flex;gap:8px">
-            <button class="btn-gold" style="padding:8px 13px;font-size:12px" onclick='launchPrompt(\${JSON.stringify(p.q)}, "standard")'>Ask Trust Counsel (Free)</button>
-            <button class="btn-ghost" style="padding:8px 12px;font-size:12px" onclick='launchPrompt(\${JSON.stringify(p.q)}, "council")'>👑 Ask 6-Model Council</button>
+            <button class="btn-gold" style="padding:8px 13px;font-size:12px" onclick='launchPrompt(\${safeAttrJs(p.q)}, "standard")'>Ask Trust Counsel (Free)</button>
+            <button class="btn-ghost" style="padding:8px 12px;font-size:12px" onclick='launchPrompt(\${safeAttrJs(p.q)}, "council")'>👑 Ask 6-Model Council</button>
           </div>
         </div>
       \`).join("")}
@@ -2429,9 +2432,9 @@ function renderChat() {
                     <div>\${srcs.length ? "Cited Sources: " + srcs.map((s) => \`<span class="src-chip">\${esc(s.id)} · \${esc(s.book)}</span>\`).join(" ") : "General Educational Synthesis"}</div>
                     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
                       \${m.model ? \`<span class="num" style="font-size:11px;opacity:0.85">Engine: \${esc(m.model)}</span>\` : ""}
-                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='speakTextAloud(\${JSON.stringify(m.content)}, this)'>🔊 Listen (TTS)</button>
-                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='exportFormalDocument("SPC University TrustGPT Memorandum", \${JSON.stringify(m.content)}, "print")'>🖨️ Print / PDF</button>
-                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='exportFormalDocument("SPC University TrustGPT Memorandum", \${JSON.stringify(m.content)}, "doc")'>📄 Word .DOC</button>
+                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='speakTextAloud(\${safeAttrJs(m.content)}, this)'>🔊 Listen (TTS)</button>
+                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='exportFormalDocument("SPC University TrustGPT Memorandum", \${safeAttrJs(m.content)}, "print")'>🖨️ Print / PDF</button>
+                      <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='exportFormalDocument("SPC University TrustGPT Memorandum", \${safeAttrJs(m.content)}, "doc")'>📄 Word .DOC</button>
                     </div>
                   </div>
                   \${m.drafts && m.drafts.length ? \`
@@ -2488,7 +2491,7 @@ function renderChat() {
           <div class="overline">Guided Strategy Prompts</div>
           <h3 style="font-family:var(--font-serif);font-size:21px;color:var(--rj-champagne);margin:4px 0 12px">One-Click Playbooks</h3>
           \${PLAYBOOKS.map((p) => \`
-            <button class="prompt-chip" onclick='launchPrompt(\${JSON.stringify(p.q)})'>
+            <button class="prompt-chip" onclick='launchPrompt(\${safeAttrJs(p.q)})'>
               <div style="font-weight:700;color:var(--rj-champagne);margin-bottom:3px">\${esc(p.label)}</div>
               <div style="color:var(--rj-muted);font-size:11.5px">\${esc(p.q)}</div>
             </button>
@@ -2692,7 +2695,7 @@ function renderModels() {
               <button class="\${picked ? "btn-gold" : "btn-ghost"}" style="flex:1;padding:8px 10px;font-size:12px;justify-content:center" onclick="toggleCouncilExpert('\${m.id}')">
                 \${picked ? "✓ Selected in Council" : "+ Add to Council"}
               </button>
-              <button class="btn-ghost" style="padding:8px 12px;font-size:12px" onclick='testSingleModel(\${JSON.stringify(m.id)}, \${JSON.stringify(m.name)})'>
+              <button class="btn-ghost" style="padding:8px 12px;font-size:12px" onclick='testSingleModel(\${safeAttrJs(m.id)}, \${safeAttrJs(m.name)})'>
                 Run Solo →
               </button>
             </div>
@@ -2743,8 +2746,8 @@ function renderLibrary() {
               <p style="font-size:13px;color:var(--rj-muted);line-height:1.55;margin:0 0 16px">\${esc(b.desc)}</p>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn-gold" style="flex:1" onclick='openBookModal(\${JSON.stringify(b.title)}, \${JSON.stringify(b.url)})'>📖 Read Interactive Book</button>
-              <button class="btn-ghost" onclick='launchPrompt(\${JSON.stringify(b.prompt)})'>Ask TrustGPT →</button>
+              <button class="btn-gold" style="flex:1" onclick='openBookModal(\${safeAttrJs(b.title)}, \${safeAttrJs(b.url)})'>📖 Read Interactive Book</button>
+              <button class="btn-ghost" onclick='launchPrompt(\${safeAttrJs(b.prompt)})'>Ask TrustGPT →</button>
             </div>
           </div>
         </div>
@@ -2759,9 +2762,9 @@ function renderLibrary() {
             <h3 style="font-family:var(--font-serif);font-size:25px;color:var(--rj-champagne);margin:2px 0 0">\${esc(STATE.corpusVolume.book)}</h3>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn-gold" onclick='selectLessonAssetTutor(\${JSON.stringify(STATE.corpusVolume.book)});switchTab("tutors");runTutorSession("masterclass","standard")'>🎓 Launch 1-on-1 Tutor on This Volume →</button>
-            <button class="btn-ghost" onclick='exportFormalDocument(\${JSON.stringify(STATE.corpusVolume.book)}, \${JSON.stringify((STATE.corpusVolume.passages || []).map((p)=>p.text).join("\\n\\n"))}, "print")'>🖨️ Print / Save PDF</button>
-            <button class="btn-ghost" onclick='exportFormalDocument(\${JSON.stringify(STATE.corpusVolume.book)}, \${JSON.stringify((STATE.corpusVolume.passages || []).map((p)=>p.text).join("\\n\\n"))}, "doc")'>📄 Download Word (.DOC)</button>
+            <button class="btn-gold" onclick='selectLessonAssetTutor(\${safeAttrJs(STATE.corpusVolume.book)});switchTab("tutors");runTutorSession("masterclass","standard")'>🎓 Launch 1-on-1 Tutor on This Volume →</button>
+            <button class="btn-ghost" onclick='exportFormalDocument(\${safeAttrJs(STATE.corpusVolume.book)}, \${safeAttrJs((STATE.corpusVolume.passages || []).map((p)=>p.text).join("\\n\\n"))}, "print")'>🖨️ Print / Save PDF</button>
+            <button class="btn-ghost" onclick='exportFormalDocument(\${safeAttrJs(STATE.corpusVolume.book)}, \${safeAttrJs((STATE.corpusVolume.passages || []).map((p)=>p.text).join("\\n\\n"))}, "doc")'>📄 Download Word (.DOC)</button>
             <button class="btn-ghost" onclick="STATE.corpusVolume=null;renderShell()">Close Reader ✕</button>
           </div>
         </div>
@@ -2770,7 +2773,7 @@ function renderLibrary() {
             <div style="background:var(--rj-obsidian);border:1px solid var(--rj-gold-border);border-radius:10px;padding:16px">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
                 <span class="seal">Passage \${idx + 1} of \${STATE.corpusVolume.total_passages}</span>
-                <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='speakTextAloud(\${JSON.stringify(p.text)}, this)'>🔊 Listen (TTS)</button>
+                <button class="btn-ghost" style="padding:3px 9px;font-size:11px" onclick='speakTextAloud(\${safeAttrJs(p.text)}, this)'>🔊 Listen (TTS)</button>
               </div>
               <div style="font-size:13.5px;line-height:1.68;color:var(--rj-text)">\${formatMarkdown(p.text)}</div>
             </div>
@@ -2792,8 +2795,8 @@ function renderLibrary() {
             <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px">
               <span class="seal">Passage #\${i + 1} · \${esc(r.book)}</span>
               <div style="display:flex;gap:6px">
-                <button class="btn-ghost" style="padding:4px 9px;font-size:11px" onclick='openCorpusVolume(\${JSON.stringify(r.book)})'>📖 Open Full Volume</button>
-                <button class="btn-ghost" style="padding:4px 9px;font-size:11px" onclick='launchPrompt("Explain this SPC University corpus passage and how to apply it step by step: " + \${JSON.stringify(r.text.slice(0, 380))})'>Ask TrustGPT →</button>
+                <button class="btn-ghost" style="padding:4px 9px;font-size:11px" onclick='openCorpusVolume(\${safeAttrJs(r.book)})'>📖 Open Full Volume</button>
+                <button class="btn-ghost" style="padding:4px 9px;font-size:11px" onclick='launchPrompt("Explain this SPC University corpus passage and how to apply it step by step: " + \${safeAttrJs(r.text.slice(0, 380))})'>Ask TrustGPT →</button>
               </div>
             </div>
             <div style="font-size:13px;color:var(--rj-text);line-height:1.6;white-space:pre-wrap">\${esc(r.text.slice(0, 560))}\${r.text.length > 560 ? "..." : ""}</div>
@@ -2833,8 +2836,8 @@ function renderLibrary() {
               <div style="font-size:12px;color:var(--rj-muted);line-height:1.5">\${esc(a.preview)}...</div>
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='openCorpusVolume(\${JSON.stringify(a.book_key)})'>📖 Read Full Volume</button>
-              <button class="btn-ghost" style="padding:7px 10px;font-size:11.5px" onclick='selectLessonAssetTutor(\${JSON.stringify(a.book_key)});switchTab("tutors");runTutorSession("masterclass","standard")'>🎓 1-on-1 Tutor</button>
+              <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='openCorpusVolume(\${safeAttrJs(a.book_key)})'>📖 Read Full Volume</button>
+              <button class="btn-ghost" style="padding:7px 10px;font-size:11.5px" onclick='selectLessonAssetTutor(\${safeAttrJs(a.book_key)});switchTab("tutors");runTutorSession("masterclass","standard")'>🎓 1-on-1 Tutor</button>
             </div>
           </div>
         \`).join("")}
@@ -3004,9 +3007,9 @@ function renderDocLab() {
               <div class="overline" style="margin-bottom:4px">SPCU Trust &amp; Rights Forensic Audit:</div>
               <div style="max-height:260px;overflow-y:auto;font-size:13.5px;color:var(--rj-text);line-height:1.6;padding:10px;background:var(--rj-vault);border-radius:8px">\${formatMarkdown(STATE.ocrResult.analysis)}</div>
               <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='speakTextAloud(\${JSON.stringify(STATE.ocrResult.analysis)}, this)'>🔊 Listen to Audit (TTS)</button>
-                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='exportFormalDocument("Forensic SPCU Document Audit - " + \${JSON.stringify(STATE.ocrResult.name)}, \${JSON.stringify(STATE.ocrResult.analysis)}, "print")'>🖨️ Print / Save Audit PDF</button>
-                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='exportFormalDocument("Forensic SPCU Document Audit - " + \${JSON.stringify(STATE.ocrResult.name)}, \${JSON.stringify(STATE.ocrResult.analysis)}, "doc")'>📄 Download Word .DOC</button>
+                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='speakTextAloud(\${safeAttrJs(STATE.ocrResult.analysis)}, this)'>🔊 Listen to Audit (TTS)</button>
+                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='exportFormalDocument("Forensic SPCU Document Audit - " + \${safeAttrJs(STATE.ocrResult.name)}, \${safeAttrJs(STATE.ocrResult.analysis)}, "print")'>🖨️ Print / Save Audit PDF</button>
+                <button class="btn-ghost" style="font-size:11.5px;padding:6px 10px" onclick='exportFormalDocument("Forensic SPCU Document Audit - " + \${safeAttrJs(STATE.ocrResult.name)}, \${safeAttrJs(STATE.ocrResult.analysis)}, "doc")'>📄 Download Word .DOC</button>
               </div>
             \` : ""}
           </div>
@@ -3088,9 +3091,9 @@ function renderDocLab() {
             <h3 style="font-family:var(--font-serif);font-size:26px;color:var(--rj-champagne);margin:2px 0 0">\${esc(STATE.docDraft.title)}</h3>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn-ghost" onclick='speakTextAloud(\${JSON.stringify(STATE.docDraft.document)}, this)'>🔊 Read Aloud (TTS)</button>
-            <button class="btn-gold" onclick='exportFormalDocument(\${JSON.stringify(STATE.docDraft.title)}, \${JSON.stringify(STATE.docDraft.document)}, "print")'>🖨️ Print / Save Formal PDF</button>
-            <button class="btn-ghost" onclick='exportFormalDocument(\${JSON.stringify(STATE.docDraft.title)}, \${JSON.stringify(STATE.docDraft.document)}, "doc")'>📄 Download Editable Word (.DOC)</button>
+            <button class="btn-ghost" onclick='speakTextAloud(\${safeAttrJs(STATE.docDraft.document)}, this)'>🔊 Read Aloud (TTS)</button>
+            <button class="btn-gold" onclick='exportFormalDocument(\${safeAttrJs(STATE.docDraft.title)}, \${safeAttrJs(STATE.docDraft.document)}, "print")'>🖨️ Print / Save Formal PDF</button>
+            <button class="btn-ghost" onclick='exportFormalDocument(\${safeAttrJs(STATE.docDraft.title)}, \${safeAttrJs(STATE.docDraft.document)}, "doc")'>📄 Download Editable Word (.DOC)</button>
           </div>
         </div>
         <div style="background:var(--rj-obsidian);border:1px solid var(--rj-gold-border);border-radius:10px;padding:22px;line-height:1.7;font-size:14.5px;max-height:580px;overflow-y:auto">
@@ -3207,8 +3210,8 @@ function renderToolsHub() {
             <div class="overline" style="margin-bottom:6px">Plain-Text Legal Synthesis (Web + SPCU Vault):</div>
             <div style="font-size:13.5px;line-height:1.65;color:var(--rj-text);max-height:240px;overflow-y:auto;margin-bottom:10px">\${formatMarkdown(STATE.webSearchRes.synthesis)}</div>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn-ghost" style="font-size:11px;padding:5px 10px" onclick='speakTextAloud(\${JSON.stringify(STATE.webSearchRes.synthesis)}, this)'>🔊 Listen (TTS)</button>
-              <button class="btn-ghost" style="font-size:11px;padding:5px 10px" onclick='exportFormalDocument("SPC University Legal Research Brief", \${JSON.stringify(STATE.webSearchRes.synthesis)}, "print")'>🖨️ Print / PDF</button>
+              <button class="btn-ghost" style="font-size:11px;padding:5px 10px" onclick='speakTextAloud(\${safeAttrJs(STATE.webSearchRes.synthesis)}, this)'>🔊 Listen (TTS)</button>
+              <button class="btn-ghost" style="font-size:11px;padding:5px 10px" onclick='exportFormalDocument("SPC University Legal Research Brief", \${safeAttrJs(STATE.webSearchRes.synthesis)}, "print")'>🖨️ Print / PDF</button>
             </div>
           </div>
         \` : ""}
@@ -3563,9 +3566,9 @@ function renderAttorneyExecutionSuite() {
             <h3 style="font-family:var(--font-serif);font-size:25px;color:var(--rj-champagne);margin:2px 0 0">\${esc(STATE.execPacketRes.title)}</h3>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn-ghost" onclick='speakTextAloud(\${JSON.stringify(STATE.execPacketRes.packet)}, this)'>🔊 Read Aloud (TTS)</button>
-            <button class="btn-gold" onclick='exportFormalDocument(\${JSON.stringify(STATE.execPacketRes.title)}, \${JSON.stringify(STATE.execPacketRes.packet)}, "print")'>🖨️ Print / Save Formal PDF</button>
-            <button class="btn-ghost" onclick='exportFormalDocument(\${JSON.stringify(STATE.execPacketRes.title)}, \${JSON.stringify(STATE.execPacketRes.packet)}, "doc")'>📄 Download Word (.DOC)</button>
+            <button class="btn-ghost" onclick='speakTextAloud(\${safeAttrJs(STATE.execPacketRes.packet)}, this)'>🔊 Read Aloud (TTS)</button>
+            <button class="btn-gold" onclick='exportFormalDocument(\${safeAttrJs(STATE.execPacketRes.title)}, \${safeAttrJs(STATE.execPacketRes.packet)}, "print")'>🖨️ Print / Save Formal PDF</button>
+            <button class="btn-ghost" onclick='exportFormalDocument(\${safeAttrJs(STATE.execPacketRes.title)}, \${safeAttrJs(STATE.execPacketRes.packet)}, "doc")'>📄 Download Word (.DOC)</button>
             <button class="btn-ghost" onclick="pushToGoogleDocsOrGmail('gmail_compose')">✉️ Email via Gmail</button>
           </div>
         </div>
@@ -3711,9 +3714,9 @@ function renderTutorsAcademy() {
                   <div style="font-family:var(--font-serif);font-size:21px;font-weight:700;color:var(--rj-champagne)">\${esc(item.asset_title)}</div>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap">
-                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='speakTextAloud(\${JSON.stringify(item.reply)}, this)'>🔊 Listen to Tutor (TTS)</button>
-                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='exportFormalDocument(\${JSON.stringify(item.asset_title + " — SPCU Tutor Lesson")}, \${JSON.stringify(item.reply)}, "print")'>🖨️ Print / Save Lesson PDF</button>
-                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='exportFormalDocument(\${JSON.stringify(item.asset_title + " — SPCU Tutor Lesson")}, \${JSON.stringify(item.reply)}, "doc")'>📄 Download Word (.DOC)</button>
+                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='speakTextAloud(\${safeAttrJs(item.reply)}, this)'>🔊 Listen to Tutor (TTS)</button>
+                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='exportFormalDocument(\${safeAttrJs(item.asset_title + " — SPCU Tutor Lesson")}, \${safeAttrJs(item.reply)}, "print")'>🖨️ Print / Save Lesson PDF</button>
+                  <button class="btn-ghost" style="padding:5px 10px;font-size:11.5px" onclick='exportFormalDocument(\${safeAttrJs(item.asset_title + " — SPCU Tutor Lesson")}, \${safeAttrJs(item.reply)}, "doc")'>📄 Download Word (.DOC)</button>
                 </div>
               </div>
               <div style="font-size:14.5px;line-height:1.7;color:var(--rj-text)">\${formatMarkdown(item.reply)}</div>
@@ -3781,8 +3784,8 @@ function renderTutorsAcademy() {
                 <div style="font-size:12px;color:var(--rj-muted);line-height:1.5">\${esc(l.preview)}...</div>
               </div>
               <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
-                <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='selectLessonAssetTutor(\${JSON.stringify(l.book_key)});runTutorSession("masterclass","standard")'>🎓 Teach Me</button>
-                <button class="btn-ghost" style="padding:7px 10px;font-size:11.5px" onclick='STATE.bookMaker.topic=\${JSON.stringify(l.title)};switchTab("bookmaker")'>📖 10K+ Book</button>
+                <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='selectLessonAssetTutor(\${safeAttrJs(l.book_key)});runTutorSession("masterclass","standard")'>🎓 Teach Me</button>
+                <button class="btn-ghost" style="padding:7px 10px;font-size:11.5px" onclick='STATE.bookMaker.topic=\${safeAttrJs(l.title)};switchTab("bookmaker")'>📖 10K+ Book</button>
               </div>
             </div>
           \`;
@@ -4050,7 +4053,7 @@ function renderBookMaker() {
               <p style="font-size:12.5px;color:var(--rj-muted);line-height:1.55;margin:0">\${esc(b.desc)}</p>
             </div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='openBookModal(\${JSON.stringify(b.title)}, \${JSON.stringify(b.url)})'>🔒 Member Vault: Unlock \${(b.words || 15000).toLocaleString()}-Word Book</button>
+              <button class="btn-gold" style="flex:1;padding:7px 10px;font-size:11.5px" onclick='openBookModal(\${safeAttrJs(b.title)}, \${safeAttrJs(b.url)})'>🔒 Member Vault: Unlock \${(b.words || 15000).toLocaleString()}-Word Book</button>
               <button class="btn-ghost" style="padding:7px 10px;font-size:11.5px" onclick="switchTab('billing')">💳 Get Member Access (\${esc(b.value)}) →</button>
             </div>
           </div>
@@ -4067,7 +4070,7 @@ function renderBookMaker() {
         <label class="overline" style="display:block;margin-bottom:6px">1-Click SPC University Book Presets (Or Type Any Topic / URL Below)</label>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           \${quickTopics.map((qt) => \`
-            <button class="prompt-chip" onclick='$("#bmTopicInput").value=\${JSON.stringify(qt)};STATE.bookMaker.topic=\${JSON.stringify(qt)}'>⚡ \${esc(qt.slice(0, 56))}...</button>
+            <button class="prompt-chip" onclick='$("#bmTopicInput").value=\${safeAttrJs(qt)};STATE.bookMaker.topic=\${safeAttrJs(qt)}'>⚡ \${esc(qt.slice(0, 56))}...</button>
           \`).join("")}
         </div>
       </div>
@@ -4423,7 +4426,7 @@ function renderBilling() {
             </div>
             <div style="display:flex;gap:6px">
               <button class="btn-ghost" style="flex:1;font-size:11px;justify-content:center" onclick="startSpcuCheckout('\${bp.id}', 'member_store')">🏛️ SPCU Member Store Cart ↗</button>
-              \${bp.book_url ? \`<button class="btn-ghost" style="font-size:11px" onclick='openBookModal(\${JSON.stringify(bp.title)}, \${JSON.stringify(bp.book_url)})'>🔒 Member Vault ↗</button>\` : ""}
+              \${bp.book_url ? \`<button class="btn-ghost" style="font-size:11px" onclick='openBookModal(\${safeAttrJs(bp.title)}, \${safeAttrJs(bp.book_url)})'>🔒 Member Vault ↗</button>\` : ""}
             </div>
           </div>
         </div>
