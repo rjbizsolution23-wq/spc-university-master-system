@@ -900,6 +900,11 @@ function buildSeoHeadInjection(url) {
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65) !important;
     backdrop-filter: blur(14px) !important;
   }
+  /* Ensure Elementor sections and video players are always visible immediately even before scrolling */
+  .elementor-invisible {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
   /* Official SPC Brand Kit Top Ribbon */
   #spcu-brand-top-ribbon {
     background: linear-gradient(90deg, #040d1a 0%, #072247 50%, #040d1a 100%);
@@ -1487,13 +1492,23 @@ const BRAND_FOOTER_SHOWCASE_AND_CHATBOT_HTML = `
 
     // 4. Wire any Elementor button without a valid href (such as the Homepage "Load More" button or "#intro-video" button) so every single button on the website responds immediately when clicked!
     document.querySelectorAll("a.elementor-button, .elementor-button-wrapper a").forEach(function(btn) {
+      if (btn.id === "elementor-menu-cart__toggle_button" || btn.classList.contains("elementor-menu-cart__toggle_button")) return;
       var h = (btn.getAttribute("href") || "").trim();
       var txt = (btn.textContent || "").trim().toLowerCase();
       if (!h || h === "#" || txt.includes("load more")) {
         btn.setAttribute("href", "/articles/");
         btn.style.cursor = "pointer";
-      } else if (h === "#intro-video" && !document.getElementById("intro-video")) {
-        btn.setAttribute("href", "/please-read-the-rules-carefully/");
+      } else if (h === "#intro-video") {
+        btn.addEventListener("click", function(ev) {
+          var vEl = document.getElementById("intro-video");
+          if (vEl) {
+            ev.preventDefault();
+            vEl.classList.remove("elementor-invisible");
+            vEl.style.visibility = "visible";
+            vEl.style.opacity = "1";
+            vEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        });
       }
     });
     try {
